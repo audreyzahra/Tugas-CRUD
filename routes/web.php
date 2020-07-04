@@ -11,23 +11,16 @@
 |
 */
 
-Route::get('/', function() {
-    return view('items.table');
-});
+Route::get('/pertanyaan', 'PertanyaanController@index');
 
-Route::get('/data-tables', function(){
-    return view('items.script');
-});
+Route::get('/pertanyaan/create', 'PertanyaanController@create');
 
-Route::get('/register', 'AuthController@form');
+Route::post('/pertanyaan' , 'PertanyaanController@store') -> name('pertanyaan');
 
-Route::get('/welcome', 'AuthController@welcome');
+Route::get('/jawaban/{pertanyaan_id}', 'JawabanController@index' );
 
-Route::get('/blank', function() {
-    return view('layouts/blank');
-});
+Route::post('/jawaban/create', 'JawabanController@create');
 
-Route::get('/items' , function(){
-    return view('items/index');
-});
+Route::post('/jawaban/{pertanyaan_id}', 'JawabanController@store' ) ->name('jawaban');
 
+Route::get('/pertanyaan/{id}', 'PertanyaanController@show');
